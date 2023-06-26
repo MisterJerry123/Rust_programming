@@ -8,7 +8,9 @@
 2. 출력 명령어
   println!();
   변수 출력시 {}사용
-  ex) println!("{x}");
+  ex) println!("{}",x); //값 출력
+  ex) println!("{x}"); //문자로 출력
+  
 3. 컴파일
   rustc 파일이름.rs
 4. cargo(러스트 프로젝트)생성
@@ -17,3 +19,63 @@
   cargo build
   cargo run
   cargo check
+6. 러스트에서의 변수 => default가 불변(immutable)
+  ex)
+  let x=3;
+  x=5; //컴파일 에러
+  따라서 변수를 변하게 하기 위해서는 mut을 사용
+  ex) let mut x=3;
+  x=5; //가능
+7. immutable변수 덮어쓰기 개념 (=shadowing)
+  ex) let x=3;
+  let x=5; //덮어쓰기, 즉 새로운 변수를 만들어서 덮어쓴거라고 생각하면 됨
+  let x=x*2; // 이런 형태의 덮어쓰기도 가능
+  let x="Hello world"; //자료형이 달라도 가능 why? 덮어쓴거기 때문에
+8. 중괄호 scope 개념
+  c에서 함수 내의 지역변수라고 생각하면 될듯
+
+  예시코드
+  fn main() {
+      let x=5;
+      {
+          let x=3;
+          println!("{}",x);
+      }
+      println!("{}",x);
+    }
+  
+  출력결과
+  3
+  5
+
+9. 상수
+  상수를 사용할 때는 자료형을 제시해야함
+  ex) const 상수이름:자료형=값
+  ex) const THREE_HOURS_IN_SECONDS:u32=60*60*3;
+10. data 타입
+  int형
+  i8, i16, i32, i64, i128
+  unsigned int형
+  u8, u16, u32, u64, u128
+
+  char형
+  char
+
+  소수형
+  f8, f16 ...
+
+  참거짓(bool)형
+  let x:bool=true;
+  let y:bool=false;
+
+  튜플형(서로다른 자료형의 조합)
+  let x:(i32,f32,char)=(1,1.1,'a');
+  .연산자(dot 연산자)를 통해서 접근 가능하고 튜플을 정의할 때 자료형을 명시해야함
+  println!("{}", x.0);
+
+  배열(자료형이 모두 같은 조합)
+  let x=[1,2,3,4,5];
+  
+
+
+  
